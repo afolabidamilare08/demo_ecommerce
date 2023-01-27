@@ -1,0 +1,74 @@
+.headerComp{
+    /* border: 1px solid red; */
+    padding: 20px 115px 20px 115px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerComp_logo{
+    width: 20%;
+    object-fit: contain;
+    height: 3.5em;
+}
+
+.searchDiv{
+    background-color: white;
+    width: 40%;
+    border-radius: 4px;
+    height: 2.6em;
+}
+
+.accountDiv{
+    border: 1px solid white;
+    /* height: 2.1em; */
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    transition: all .5s;
+}
+
+.accountDiv:hover{
+    background-color: white;
+    color: black;
+}
+
+.accountDiv-acc{
+    color: currentColor;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.accountDiv-txt{
+    color: currentColor;
+    font-weight: 700;
+    margin: 0em .4em;
+}
+
+.accountDiv-down{
+    color: currentColor;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.cartDiv{
+    padding: .5em;
+    display: flex;
+    align-items: center;
+}
+
+.cartDiv-ic{
+    color: white;
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: .4em;
+}
+
+.cartDiv-txt{
+    color: white;
+    font-weight: 700;
+}
