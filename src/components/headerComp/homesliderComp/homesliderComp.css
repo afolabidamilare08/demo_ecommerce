@@ -1,0 +1,8 @@
+.homeSliderimg{
+    /* border: 1px solid red; */
+    background-image: url('../../../assets/images/sliderImg.jpg');
+    height: 70vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

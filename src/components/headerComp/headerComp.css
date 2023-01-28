@@ -17,7 +17,38 @@
     background-color: white;
     width: 40%;
     border-radius: 4px;
-    height: 2.6em;
+    /* height: 2.6em; */
+    display: flex;
+    padding: .2em;
+    justify-content: space-between;
+
+}
+
+.searchDiv-input{
+    border: none;
+    padding: .2em .2em .2em .8em ;
+    font-size: 1em;
+    /* width: 7; */
+    flex: 1;
+}   
+
+.searchDiv-input:hover,
+.searchDiv-input:focus{
+    outline: none;
+}
+
+.searchDiv-btn{
+    padding: .8em 1.3em .8em 1.3em;
+    border-radius: 4px;
+    border: none;
+    background-color: tomato;
+    color: white;
+}
+
+.searchDiv-btn-ic{
+    width: 1.3em;
+    height: 1.3em;
+    color: currentColor;
 }
 
 .accountDiv{
@@ -71,4 +102,23 @@
 .cartDiv-txt{
     color: white;
     font-weight: 700;
+}
+
+
+.underHeader{
+    padding: 1em 115px 1em 115px;
+    background-color: #a1a1a1;
+    display: flex;
+}
+
+.underHeader-link{
+    font-weight: 700;
+    display: flex;
+    transition: all .5s;
+    cursor: pointer;
+    margin-right: 2em;
+}
+
+.underHeader-link:hover{
+    color: red;
 }

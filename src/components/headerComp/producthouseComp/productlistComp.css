@@ -1,0 +1,60 @@
+.produductlist{
+    /* border: 1px solid red; */
+    width: 20%;
+    padding: .5em;
+}
+
+.produductlist-img{
+    height: 8em;
+    display: block;
+    margin: .5em auto;
+}
+
+.produductlist-txt{
+    font-weight: 600;
+    display: block;
+    color: #333;
+    font-size: .9em;
+    text-align: center;
+}
+
+.produductlist-sub{
+    font-size: .8em;
+    text-align: center;
+    margin-top: 1em;
+    color: gray;
+}
+
+.produductlist-price{
+    margin-top: 1em;
+    text-align: center;
+    font-weight: 700;
+    color: tomato;
+}
+
+.produductlist-btn{
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: .6em;
+    border: none;
+    cursor: pointer;
+    transition: all .5s;
+    color: crimson;
+    font-weight: 700;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 2px solid crimson;
+}
+
+/* .produductlist-btn{
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: .6em;
+    border: none;
+    color: white;
+    font-weight: 700;
+    border-radius: 5px;
+    background-color: crimson;
+} */
