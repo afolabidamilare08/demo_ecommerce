@@ -3,8 +3,11 @@ import Logoimg from '../../assets/images/logo.png';
 import {AiOutlineUser} from 'react-icons/ai';
 import {BiChevronDown,BiSearchAlt2} from 'react-icons/bi';
 import {CgShoppingCart} from 'react-icons/cg';
+import { useState } from 'react';
 
-export const HeaderComp = () => {
+export const HeaderComp = ({openMycart,openLogin}) => {
+
+    const [ AccountOpen, setAccountOpen ] = useState(false)
 
     const links = [
         'Clothing',
@@ -32,7 +35,7 @@ export const HeaderComp = () => {
                     </button>
                 </div>
 
-                <div className='accountDiv' >
+                <div className='accountDiv' onClick={ () => setAccountOpen(!AccountOpen) } >
 
                     <AiOutlineUser className='accountDiv-acc' />
 
@@ -40,9 +43,16 @@ export const HeaderComp = () => {
 
                     <BiChevronDown className='accountDiv-down' />
 
+                    { AccountOpen ? <div className='accountDiv-hov' >
+
+                        <div className='accountDiv-hov-link' onClick={ openLogin } >Login</div>
+                        <div className='accountDiv-hov-link' onClick={ openLogin } >Register</div>
+
+                    </div>: ""}
+
                 </div>
 
-                <div className='cartDiv' >
+                <div className='cartDiv'onClick={ openMycart } >
 
                     <CgShoppingCart className='cartDiv-ic' />
 

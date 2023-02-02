@@ -1,0 +1,99 @@
+.modalBox{
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.664);
+    z-index: 22;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+
+}   
+
+
+.productDetail_box{
+
+    width: 60%;
+    height: 75vh;
+    border-radius: 9px;
+    background-color: white;
+    display: flex;
+
+}
+
+.productDetail_box-left{
+    width: 40%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+}
+
+
+.productDetail_box-left-img{
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+}
+
+.productDetail_box-right{
+    padding: 1rem;
+    width: 60%;
+}
+
+.productDetail_box-right-name{
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family:sans-serif ;
+}
+
+.productDetail_box-right-price{
+    margin-top: .5rem;
+    color: green;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.productDetail_box-right-tit{
+    margin-top: 2rem;
+    font-weight: 700;
+    color: gray;
+}
+
+.productDetail_box-right-det{
+    margin-top: .6rem;
+    color:rgba(51, 51, 51, 0.719);
+}
+
+.productDetail_box-right-btn{
+    margin-top: 2rem;
+    width: 50%;
+    padding: .4rem;
+    border-radius: 5px;
+    border: none;
+    background-color: crimson;
+    color: white;
+    font-weight: 700;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.productDetail_box-right-btn:hover{
+    color: crimson;
+    background-color: white;
+    border: 2px solid crimson;
+}
+
+
+.closeModal{
+    color: gray;
+    cursor: pointer;
+    width: 1.4rem;
+    height: 1.4rem;
+}

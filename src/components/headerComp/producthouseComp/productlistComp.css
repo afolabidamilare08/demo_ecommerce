@@ -45,16 +45,11 @@
     background-color: transparent;
     border-radius: 5px;
     border: 2px solid crimson;
+    cursor: pointer;
 }
 
-/* .produductlist-btn{
-    display: block;
-    width: 100%;
-    margin-top: 1rem;
-    padding: .6em;
-    border: none;
+.produductlist-btn:hover,
+.produductlist-btn:focus{
     color: white;
-    font-weight: 700;
-    border-radius: 5px;
     background-color: crimson;
-} */
+} 

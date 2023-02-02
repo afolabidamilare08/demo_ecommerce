@@ -1,7 +1,7 @@
 import './productlistComp.css';
 import ImgProduct from '../../../assets/images/products/218d1e5f-d838-47a5-b6ef-2b4dfd89d36a.jpg'
 
-export const ProductList = () => {
+export const ProductList = ({openMOdal}) => {
 
     return (
 
@@ -17,7 +17,7 @@ export const ProductList = () => {
                 qui blanditiis praesentium voluptatum..
             </div>
 
-            <button className='produductlist-btn' >
+            <button className='produductlist-btn' onClick={openMOdal} >
                 Add to cart
             </button>
 

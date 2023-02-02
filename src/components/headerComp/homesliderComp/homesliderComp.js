@@ -10,7 +10,7 @@ export const HomesliderComp = () => {
 
     return (
 
-        <Carousel infiniteLoop={true} autoPlay={true} >
+        <Carousel infiniteLoop={true} showThumbs={false} autoPlay={true} >
 
             { Slides.map( (slide,index) => {
                 return ( 

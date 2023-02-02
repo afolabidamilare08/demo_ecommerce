@@ -52,6 +52,7 @@
 }
 
 .accountDiv{
+    position: relative;
     border: 1px solid white;
     /* height: 2.1em; */
     padding: .5em;
@@ -66,6 +67,22 @@
 .accountDiv:hover{
     background-color: white;
     color: black;
+}
+
+
+.accountDiv-hov{
+    position: absolute;
+    bottom: -4.5rem;
+    left: 0rem;
+    width: 100%;
+    height: 4rem;
+    background-color: white;
+}
+
+.accountDiv-hov-link{
+    text-align: center;
+    color: black;
+    padding: .4rem;
 }
 
 .accountDiv-acc{
@@ -90,17 +107,27 @@
     padding: .5em;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    color: white;
+    transition: all .5s;
+    border-radius: 4px;
+}
+
+.cartDiv:hover,
+.cartDiv:focus{
+    background-color: white;
+    color: black;
 }
 
 .cartDiv-ic{
-    color: white;
+    color: currentColor;
     width: 1.5em;
     height: 1.5em;
     margin-right: .4em;
 }
 
 .cartDiv-txt{
-    color: white;
+    color: currentColor;
     font-weight: 700;
 }
 
