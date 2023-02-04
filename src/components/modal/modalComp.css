@@ -60,7 +60,7 @@
 }
 
 .productDetail_box-right-tit{
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-weight: 700;
     color: gray;
 }
@@ -71,7 +71,7 @@
 }
 
 .productDetail_box-right-btn{
-    margin-top: 2rem;
+    margin-top: 1em;
     width: 50%;
     padding: .4rem;
     border-radius: 5px;

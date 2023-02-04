@@ -89,12 +89,21 @@
     font-size: 1rem;
     color: white;
     cursor: pointer;
+    transition: all .5s;
 }
 
 
+.loginModal-box-fbtn:hover{
+    background-color: rgba(38, 120, 234, 0.493);
+}
+
+.loginModal-box-fbtn2:hover{
+    background-color: rgba(38, 120, 234, 0.493);
+    color: white;
+}
 
 .loginModal-box-input::placeholder{
-    color: white;
+    color: rgba(255, 255, 255, 0.479);
 }
 
 
@@ -129,8 +138,9 @@
     background-color: white;
     font-weight: 700;
     font-size: 1rem;
-    color: rgb(38, 120, 234);cursor: pointer;
-
+    color: rgb(38, 120, 234);
+    cursor: pointer;
+    transition: all .5s;
 }
 
 

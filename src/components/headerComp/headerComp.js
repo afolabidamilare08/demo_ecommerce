@@ -3,11 +3,13 @@ import Logoimg from '../../assets/images/logo.png';
 import {AiOutlineUser} from 'react-icons/ai';
 import {BiChevronDown,BiSearchAlt2} from 'react-icons/bi';
 import {CgShoppingCart} from 'react-icons/cg';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import AppContext from '../../context/AppContext';
 
 export const HeaderComp = ({openMycart,openLogin}) => {
 
     const [ AccountOpen, setAccountOpen ] = useState(false)
+    const { UserBasicDetails } = useContext(AppContext)
 
     const links = [
         'Clothing',
@@ -16,6 +18,10 @@ export const HeaderComp = ({openMycart,openLogin}) => {
         'Accessories',
         'Sport'
     ]
+
+    useEffect( () => {
+        console.log(UserBasicDetails)
+    }, [UserBasicDetails] )
 
     return (
 
@@ -39,14 +45,23 @@ export const HeaderComp = ({openMycart,openLogin}) => {
 
                     <AiOutlineUser className='accountDiv-acc' />
 
-                    <span className='accountDiv-txt' >My Account</span>
+                    <span className='accountDiv-txt' > {UserBasicDetails ? UserBasicDetails.username : "My Account" }</span>
 
                     <BiChevronDown className='accountDiv-down' />
 
                     { AccountOpen ? <div className='accountDiv-hov' >
 
-                        <div className='accountDiv-hov-link' onClick={ openLogin } >Login</div>
+                        { UserBasicDetails ?
+                        
+                            <>
+                                <div className='accountDiv-hov-link' >Welcome {UserBasicDetails.username}</div>
+                            </>
+
+                        : <>
+                        
+                            <div className='accountDiv-hov-link' onClick={ openLogin } >Login</div>
                         <div className='accountDiv-hov-link' onClick={ openLogin } >Register</div>
+                        </> }
 
                     </div>: ""}
 
