@@ -6,3 +6,9 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+@media screen and (max-width: 700px) {
+    .homeSliderimg{
+        height: 35vh;
+    }
+}

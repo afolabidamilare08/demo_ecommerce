@@ -222,3 +222,27 @@
     font-weight: 700;
     cursor: pointer;
 }
+
+
+@media screen and (max-width: 1000px) {
+
+    .loginModal-box{
+        width: 93%;
+        /* height: 75vh; */
+        border-radius: 9px;
+        background-color: white;
+        padding: 1.5rem;
+    }
+
+    .loginModal-box-fbtn{
+        font-size: .8rem;
+    }
+
+    .loginModal-box-fbtn2{
+        font-size: .8rem;
+    }
+
+    .loginModal-box-input{
+        font-size: .8rem;
+    }
+}

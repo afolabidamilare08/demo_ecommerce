@@ -41,3 +41,14 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
+
+
+@media screen and (max-width: 1000px) {
+    
+    .houseproductComp-left-txt{
+        font-size: .8em;
+        /* margin-bottom: .5em; */
+    }
+
+}

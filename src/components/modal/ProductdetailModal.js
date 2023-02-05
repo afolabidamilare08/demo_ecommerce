@@ -51,20 +51,23 @@ export const ProductDetailModal = ({CurrentProductToShow,setOpenModal}) => {
 
         <div className='productDetail_box' > 
           
-          <div className='productDetail_box-left' >
-            <img alt='wel' src={CurrentProductToShow.product_images[0].url} className="productDetail_box-left-img" />
-          </div>
-  
-          <div className='productDetail_box-right' >
-  
-            <div style={{
+          <div style={{
               display:"flex",
-              justifyContent:"flex-end"
+              justifyContent:"flex-end",
+              padding:".6em"
             }} >
   
               <AiFillCloseCircle className='closeModal' onClick={setOpenModal} /> 
   
             </div>
+
+            <div className='splitIdd' >
+
+            <div className='productDetail_box-left' >
+            <img alt='wel' src={CurrentProductToShow.product_images[0].url} className="productDetail_box-left-img" />
+          </div>
+  
+          <div className='productDetail_box-right' >
   
             <div className='productDetail_box-right-name' >
               {CurrentProductToShow.product_name}
@@ -109,6 +112,8 @@ export const ProductDetailModal = ({CurrentProductToShow,setOpenModal}) => {
             </button>
   
           </div>
+
+            </div>
   
         </div>
   

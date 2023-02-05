@@ -41,37 +41,43 @@ export const HeaderComp = ({openMycart,openLogin}) => {
                     </button>
                 </div>
 
-                <div className='accountDiv' onClick={ () => setAccountOpen(!AccountOpen) } >
+                <div style={{
+                    display:'flex'
+                }} >
 
-                    <AiOutlineUser className='accountDiv-acc' />
+                    <div className='accountDiv' onClick={ () => setAccountOpen(!AccountOpen) } >
 
-                    <span className='accountDiv-txt' > {UserBasicDetails ? UserBasicDetails.username : "My Account" }</span>
+                        <AiOutlineUser className='accountDiv-acc' />
 
-                    <BiChevronDown className='accountDiv-down' />
+                        <span className='accountDiv-txt' > {UserBasicDetails ? UserBasicDetails.username : "My Account" }</span>
 
-                    { AccountOpen ? <div className='accountDiv-hov' >
+                        <BiChevronDown className='accountDiv-down' />
 
-                        { UserBasicDetails ?
-                        
-                            <>
-                                <div className='accountDiv-hov-link' >Welcome {UserBasicDetails.username}</div>
-                            </>
+                        { AccountOpen ? <div className='accountDiv-hov' >
 
-                        : <>
-                        
-                            <div className='accountDiv-hov-link' onClick={ openLogin } >Login</div>
-                        <div className='accountDiv-hov-link' onClick={ openLogin } >Register</div>
-                        </> }
+                            { UserBasicDetails ?
+                            
+                                <>
+                                    <div className='accountDiv-hov-link' >Welcome {UserBasicDetails.username}</div>
+                                </>
 
-                    </div>: ""}
+                            : <>
+                            
+                                <div className='accountDiv-hov-link' onClick={ openLogin } >Login</div>
+                            <div className='accountDiv-hov-link' onClick={ openLogin } >Register</div>
+                            </> }
 
-                </div>
+                        </div>: ""}
 
-                <div className='cartDiv'onClick={ openMycart } >
+                    </div>
 
-                    <CgShoppingCart className='cartDiv-ic' />
+                    <div className='cartDiv'onClick={ openMycart } >
 
-                    <span className='cartDiv-txt' >My Cart</span>
+                        <CgShoppingCart className='cartDiv-ic' />
+
+                        <span className='cartDiv-txt' >My Cart</span>
+
+                    </div>
 
                 </div>
 
