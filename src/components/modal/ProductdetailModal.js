@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Dots } from 'react-activity';
 import {AiFillCloseCircle} from 'react-icons/ai';
 import AppContext from '../../context/AppContext';
@@ -11,10 +11,68 @@ import "react-activity/dist/library.css";
 export const ProductDetailModal = ({CurrentProductToShow,setOpenModal}) => {
 
     const [ isError, setisError ] = useState(null)
-    const [ SuccessMessager, setSuccessMessager ] = useState(false)
+    const [ Removing, setRemoving ] = useState(false)
     const [ isLoading, setisLoading ] = useState(false)
+    const [ Existing, setisExisting ] = useState(false)
 
-    const { UserBasicDetails, UpdateUserCart } = useContext(AppContext);
+    const { UserBasicDetails, UpdateUserCart, UserCart } = useContext(AppContext);
+
+
+    useEffect( () => {
+
+      if ( CurrentProductToShow ) {
+        function checkProduct(age) {
+          return age.product_id === CurrentProductToShow._id;
+        }
+  
+        if (UserCart) {
+          const result = UserCart.cart_products.find(checkProduct)
+  
+          if ( result ) {
+            setisExisting(true)
+          }
+        }
+      }
+
+    }, [UserCart,CurrentProductToShow] )
+
+    const RemoveFromCart = (product) => {
+
+      if ( !UserBasicDetails ) {
+
+        const CartDetails = {
+          ...UserCart
+        }
+        const Cart_products = [...CartDetails.cart_products]
+        
+        function checktheProduct(age) {
+            return age.product_id === CurrentProductToShow._id;
+        }
+          
+          const resultIndex = CartDetails.cart_products.findIndex(checktheProduct)
+
+          Cart_products.splice(resultIndex,resultIndex + 1)
+
+              UpdateUserCart({
+                cart_products:Cart_products,
+                cart_total: UserCart.cart_total - CurrentProductToShow.product_price
+              })
+
+          return
+      }
+
+      setRemoving(true)
+      Axios.post('carts/cart/mycart/remove_from_cart',{product_id:product._id,product_quantity:1})
+        .then( (response) => {
+            setRemoving(false)
+            UpdateUserCart(response.data)
+        } )
+        .catch( (err) => {
+          setRemoving(false)
+          console.log(err)
+        } )
+  
+    }
 
     const HandleAddtoCart = () => {
 
@@ -22,6 +80,36 @@ export const ProductDetailModal = ({CurrentProductToShow,setOpenModal}) => {
 
         if ( !UserBasicDetails ) {
             setisLoading(false)
+
+            if ( !UserCart ) {
+              UpdateUserCart({
+                cart_products:[
+                  {
+                    product:CurrentProductToShow,
+                    product_id:CurrentProductToShow._id,
+                    quantity:1,
+                    total_product_price:CurrentProductToShow.product_price
+                  }
+                ],
+                cart_total:CurrentProductToShow.product_price
+              })
+            }
+
+            else{
+              UpdateUserCart({
+                cart_products:[...UserCart.cart_products,
+                  {
+                    product:CurrentProductToShow,
+                    product_id:CurrentProductToShow._id,
+                    quantity:1,
+                    total_product_price:CurrentProductToShow.product_price
+                  }
+                ],
+                cart_total: parseInt(UserCart.cart_total) + parseInt(CurrentProductToShow.product_price )
+              })
+
+            }
+
             setisError("You must be logged in before you can add to cart")
             return
         }
@@ -33,7 +121,6 @@ export const ProductDetailModal = ({CurrentProductToShow,setOpenModal}) => {
             setisLoading(false)
             console.log(response.data)
             UpdateUserCart(response.data)
-            setSuccessMessager(true)
         } )
         .catch( (err) => {
             setisLoading(false)
@@ -100,16 +187,21 @@ export const ProductDetailModal = ({CurrentProductToShow,setOpenModal}) => {
                 {isError}
             </div>
 
-            <div style={{
-                marginTop:".5rem",
-                marginBottom:".5rem",
-                color:"green",
-                fontSize:".9rem"
-            }}  > {SuccessMessager ? "Product was successfully added to cart" : "" } </div> 
+            { Existing ? 
+            
+              <button className='productDetail_box-right-btn' style={{
+                backgroundColor:"tomato"
+              }} onClick={ () => RemoveFromCart(CurrentProductToShow) } >
+                { Removing ? <Dots/> : "Remove product from cart" }
+              </button>
 
+            :
+            
             <button className='productDetail_box-right-btn' onClick={ HandleAddtoCart } >
               { isLoading ? <Dots/> : "Add to cart" }
             </button>
+
+            }
   
           </div>
 

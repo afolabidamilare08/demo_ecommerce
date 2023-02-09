@@ -29,7 +29,6 @@
 .cartmodal-box-mid{
     height: 50vh;
     overflow-y: auto;
-    /* border: 1px solid red; */
 }
 
 .cartItem{
@@ -99,4 +98,42 @@
     color: white;
     font-weight: 700;
     cursor: pointer;
+}
+
+
+@media screen and (max-width: 700px) {
+
+    .cartmodal-box{
+        width: 90%;
+        height: 90vh;
+    }
+
+    .cartmodal-box-mid{
+        height: 80vh;
+        border: 1px solid blue;
+    }
+
+    .cartmodal-box-top-title{
+        font-size: 1.2rem;
+    }
+
+    .cartItem-img{
+        /* border: 1px solid green; */
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .cartItem-left-remove{
+        background-color: tomato;
+        border: none;
+        color: white;
+        display: block;
+        margin-top: 1rem;
+        padding: .4rem;
+        font-weight: 800;
+        cursor: pointer;
+        font-size: .6rem;
+        border-radius: 50px;
+    }
+
 }

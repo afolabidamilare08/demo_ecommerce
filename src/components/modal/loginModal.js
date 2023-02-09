@@ -11,7 +11,7 @@ import AppContext from '../../context/AppContext';
 
 export const LoginModal = ({closeModal}) => {
 
-    const { LoginHandler } = useContext(AppContext)
+    const { LoginHandler, UserCart } = useContext(AppContext)
     const [ Username, setUsername ] = useState('')
     const [ isLoading, setisLoading ] = useState(false)
     const [ isVerifying, setisVerifying ] = useState(false)
@@ -30,8 +30,17 @@ export const LoginModal = ({closeModal}) => {
     const SignUpHandler = () => {
 
         if ( Username !== "" ) {
+
+            if ( UserCart ) {
+                console.log(UserCart)
+                var dataTOsend = {username:Username,cart:UserCart}
+            }else{
+                console.log("tyy")
+                dataTOsend = {username:Username}
+            }
+
             setisLoading(true)
-            Axios.post('auth/signup',{username:Username})
+            Axios.post('auth/signup',dataTOsend)
                 .then( (response) => {
                     setQrauth(response.data)
                     console.log(response.data) 
@@ -79,7 +88,7 @@ export const LoginModal = ({closeModal}) => {
             .catch( (error) => {
                 setisLoading(false)
                 setisError({
-                    error_message:error.response.data,
+                    error_message: error.response ? error.response.data : "something went wrong" ,
                     error_status:true
                 })
             } )
@@ -96,6 +105,12 @@ export const LoginModal = ({closeModal}) => {
             .then( (response) => {
                 
                 console.log(response.data.accessToken)
+                
+                if ( response.data.accessToken ) {
+                    LoginHandler(response.data)
+                    console.log("ss")
+                }
+
                 setisVerifying(false)
                 setVerifiactionError({
                     error_message:"",
@@ -107,11 +122,6 @@ export const LoginModal = ({closeModal}) => {
                         error_message:"You have not completed the authentication process",
                         error_status:true
                     })
-                }
-
-                if ( response.data.accessToken ) {
-                    LoginHandler(response.data)
-                    console.log("ss")
                 }
 
             } )

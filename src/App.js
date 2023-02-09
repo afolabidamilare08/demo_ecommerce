@@ -16,14 +16,15 @@ import "react-activity/dist/library.css";
 import AppContext from './context/AppContext';
 import { ProductDetailModal } from './components/modal/ProductdetailModal';
 import { CHeckouthAuthModal } from './components/modal/CheckoutAuth';
+import { FooterComp } from './components/footer/footerComp';
+import { MyOrdersModal } from './components/modal/MyOrders';
 
 
 
-const socket = io.connect("https://ecombend-production.up.railway.app/")
+// const socket = io.connect("https://ecombend-production.up.railway.app/")
 
 function App() {
 
-  const [ MyCart, setMyCart ] = useState([1,2,3,4,5,6,])
   const [ Products, setProducts ] = useState(null)
   const [ LoadingProduct, setLoadingProduct ] = useState(false)
   const [ CurrentContent, setCurrentContent ] = useState('product_Detail')
@@ -34,13 +35,37 @@ function App() {
 
   const [ OpenModal, setOpenModal ] = useState(false)
 
-  Axios.defaults.baseURL = "https://ecombend-production.up.railway.app//"; 
 
   if ( UserBasicDetails ) {
     Axios.defaults.headers.common['token'] = 'Bearer ' + UserBasicDetails.accessToken
   }
 
   const RemoveFromCart = ({product}) => {
+
+    if ( !UserBasicDetails ) {
+
+      const CartDetails = {
+        ...UserCart
+      }
+      const Cart_products = [...CartDetails.cart_products]
+      
+      function checktheProduct(age) {
+          return age.product_id === product._id;
+      }
+        
+        const resultIndex = CartDetails.cart_products.findIndex(checktheProduct)
+
+        Cart_products.splice(resultIndex, resultIndex + 1 )
+
+        // console.log(Cart_products)
+
+            UpdateUserCart({
+              cart_products:Cart_products,
+              cart_total: UserCart.cart_total - product.product_price
+            })
+
+        return
+    }
 
     Axios.post('carts/cart/mycart/remove_from_cart',{product_id:product._id,product_quantity:1})
       .then( (response) => {
@@ -100,7 +125,10 @@ function App() {
                     </div>
 
                     <div className='cartmodal-box-btm' > 
-                      <button className='cartmodal-box-btm-btn' onClick={ () => setCheckingOut(true) } >
+                      <button className='cartmodal-box-btm-btn' onClick={ UserBasicDetails ? () => setCheckingOut(true) : () => {
+                        setCheckingOut(true)
+                        setCurrentContent('login_reg')
+                        } } >
                         Checkout Cart Total: ${UserCart.cart_total}
                       </button>
                     </div>
@@ -138,6 +166,12 @@ function App() {
         CurrentProductToShow={CurrentProductToShow}
         setOpenModal={ () => setOpenModal(false) }
       />
+    }
+
+    if( CurrentContent === 'my_orders' ){
+      return <MyOrdersModal
+              closeModal={ () => setOpenModal(false) }
+            />
     }
 
     if( CurrentContent === 'my_cart' ){
@@ -181,6 +215,10 @@ function App() {
             setCurrentContent('login_reg')
             setOpenModal(true)
           } }
+          openOrders={ () => {
+            setCurrentContent('my_orders')
+            setOpenModal(true)
+          } }
         />
 
         <HomesliderComp/>
@@ -200,7 +238,7 @@ function App() {
           
             <div>
             <HouseProduct
-            title={"New Arrivals"}
+              title={"New Arrivals"}
               products={ 
                 <>
 
@@ -237,6 +275,8 @@ function App() {
         value={value}
         viewBox={`0 0 256 256`} 
       /> */}
+
+      {/* <FooterComp/> */}
 
     </div>
   );

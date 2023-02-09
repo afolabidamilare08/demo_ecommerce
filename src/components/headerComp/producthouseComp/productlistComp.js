@@ -5,7 +5,7 @@ export const ProductList = ({openMOdal,product_image,product_name,product_price}
 
     return (
 
-        <div className="produductlist" >
+        <div className="produductlist" onClick={openMOdal} >
 
             <img src={product_image} className="produductlist-img" alt="prof" />
 

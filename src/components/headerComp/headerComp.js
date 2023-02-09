@@ -6,10 +6,10 @@ import {CgShoppingCart} from 'react-icons/cg';
 import { useContext, useEffect, useState } from 'react';
 import AppContext from '../../context/AppContext';
 
-export const HeaderComp = ({openMycart,openLogin}) => {
+export const HeaderComp = ({openMycart,openLogin,openOrders}) => {
 
     const [ AccountOpen, setAccountOpen ] = useState(false)
-    const { UserBasicDetails } = useContext(AppContext)
+    const { UserBasicDetails, LogoutHandler } = useContext(AppContext)
 
     const links = [
         'Clothing',
@@ -58,7 +58,11 @@ export const HeaderComp = ({openMycart,openLogin}) => {
                             { UserBasicDetails ?
                             
                                 <>
-                                    <div className='accountDiv-hov-link' >Welcome {UserBasicDetails.username}</div>
+                                    <div className='accountDiv-hov-link' onClick={ openOrders } >My Orders</div>
+                                    <div className='accountDiv-hov-link' onClick={ () => {
+                                        LogoutHandler()
+                                        openLogin()
+                                    } } >Logout</div>
                                 </>
 
                             : <>
@@ -91,7 +95,6 @@ export const HeaderComp = ({openMycart,openLogin}) => {
                         return (
                             <div key={index} className='underHeader-link' >
                                 <span className='underHeader-link-txt' >{dlink}</span>
-                                <BiChevronDown className='underHeader-link-ic' />
                             </div>
                         );
                     } )

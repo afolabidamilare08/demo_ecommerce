@@ -130,3 +130,26 @@
     }
 
 }
+
+
+.OrderList{
+    display: flex;
+    /* flex-direction: column; */
+    cursor: pointer;
+    padding: 1rem;
+    transition: all .5s;
+}
+
+
+.OrderList:hover{
+    background-color: lightgrey;
+}
+
+.OrderList-order{
+    font-weight: 600;
+}
+
+.OrderList-status{
+    margin-left: 2rem;
+
+}

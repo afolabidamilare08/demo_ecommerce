@@ -7,6 +7,24 @@
     background-repeat: no-repeat;
 }
 
+.homeSliderimg2{
+    /* border: 1px solid red; */
+    background-image: url('../../../assets/images/2bbcfa99737217.5ef9be3dbb9a9.jpg');
+    height: 70vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.homeSliderimg3{
+    /* border: 1px solid red; */
+    background-image: url('../../../assets/images/running-sport-shoes-banner-horizontal-260nw-701407561.jpg');
+    height: 70vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 @media screen and (max-width: 700px) {
     .homeSliderimg{
         height: 35vh;
