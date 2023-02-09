@@ -276,7 +276,7 @@ function App() {
         viewBox={`0 0 256 256`} 
       /> */}
 
-      {/* <FooterComp/> */}
+      <FooterComp/>
 
     </div>
   );
