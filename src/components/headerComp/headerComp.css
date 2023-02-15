@@ -75,7 +75,8 @@
     position: absolute;
     bottom: -4.5rem;
     left: 0rem;
-    /* width: 100%; */
+    width: 100%; 
+    font-weight: 700;
     height: 4rem;
     background-color: white;
 }

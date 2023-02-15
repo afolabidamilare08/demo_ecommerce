@@ -161,3 +161,17 @@
     font-weight:600
   }
 }
+.splitThesa{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 70px;
+}
+
+@media (max-width:500px)
+{
+
+  .splitThesa{
+    flex-direction: column;
+  }
+
+}

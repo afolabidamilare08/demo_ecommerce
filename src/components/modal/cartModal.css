@@ -6,6 +6,64 @@
     padding: 1.5rem;
 }
 
+.nocart_img{
+    width:100px;
+    height:100px;
+    display: block;
+    margin: 20px auto;
+}
+
+.nocart_img_txt{
+    text-align: center;
+    margin-top: 55px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+@media screen and (min-width: 1440px) {
+
+    .cartmodal-box{
+        width: 35%;
+        height: 55vh;
+        border-radius: 9px;
+        background-color: white;
+        padding: 1.5rem;
+    }
+
+    .nocart_img{
+        width:180px;
+        height:180px;
+    }
+
+    .nocart_img_txt{
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+}
+
+@media screen and (min-width: 900px) {
+
+    .cartmodal-box{
+        width:50%;
+        height: 70vh;
+        border-radius: 9px;
+        background-color: white;
+        padding: 1.5rem;
+    }
+
+    .nocart_img{
+        width:180px;
+        height:180px;
+    }
+
+    .nocart_img_txt{
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+}
+
 .cartmodal-box-top{
     margin-bottom: 3rem;
     display: flex;

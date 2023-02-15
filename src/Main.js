@@ -2,9 +2,11 @@ import Axios from "axios"
 import { useState } from "react"
 import App from "./App"
 import AppContext from "./context/AppContext"
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 export const MainIndex = () => {
 
+    // Axios.defaults.baseURL = "http://localhost:5001/"; 
     Axios.defaults.baseURL = "https://ecombend-production.up.railway.app/"; 
 
     const [ UserDetails, setUserDetails ] = useState(null)
@@ -58,7 +60,14 @@ export const MainIndex = () => {
             LogoutHandler:LogoutHandler
         }} >
 
-            <App/>
+            <BrowserRouter>
+                
+                <Routes>
+                    <Route path="/" exact element={ <App/>} />
+                    <Route path="/verify_register/" exact element={ <App/>} />
+                </Routes>
+
+            </BrowserRouter>
 
         </AppContext.Provider>
 

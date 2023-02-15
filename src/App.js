@@ -18,6 +18,9 @@ import { ProductDetailModal } from './components/modal/ProductdetailModal';
 import { CHeckouthAuthModal } from './components/modal/CheckoutAuth';
 import { FooterComp } from './components/footer/footerComp';
 import { MyOrdersModal } from './components/modal/MyOrders';
+import { useParams, useSearchParams, useLocation } from 'react-router-dom';
+import ImageCart from './assets/images/carts.png'
+import { LoginVerificationodal } from './components/modal/loginVerificationModal';
 
 
 
@@ -34,6 +37,9 @@ function App() {
   const { UserBasicDetails, UserCart, UpdateUserCart } = useContext(AppContext)
 
   const [ OpenModal, setOpenModal ] = useState(false)
+  const [ registration_validation_token, setregistration_validation_token ] = useState()
+
+  const location = useLocation()
 
 
   if ( UserBasicDetails ) {
@@ -93,7 +99,7 @@ function App() {
 
                     <div className='cartmodal-box-mid' >
 
-                      { UserCart.cart_products.map( (item,index) => {
+                      { UserCart.cart_products.length > 0 ? UserCart.cart_products.map( (item,index) => {
                         return (
                           
 
@@ -120,7 +126,14 @@ function App() {
                           </div>
 
                         );
-                      } ) }
+                      } ) : 
+                      
+                      <div>
+                        <img src={ImageCart} className="nocart_img" alt="well" />
+                        <div className='nocart_img_txt' > Your Cart is Empty </div>
+                      </div>
+                      
+                      }
 
                     </div>
 
@@ -134,7 +147,13 @@ function App() {
                     </div>
                   </>
               
-              : <></> }
+              : 
+              <div>
+              <img src={ImageCart} className="nocart_img" alt="well" />
+              <div className='nocart_img_txt' > Your Cart is Empty </div>
+            </div>
+              
+              }
 
       </div>
 
@@ -146,18 +165,25 @@ function App() {
 
     useEffect( () => {
 
+      if ( location.pathname === '/verify_register/' ) {
+        const registration_validation_token = location.search.split("=");
+        console.log(registration_validation_token[1])
+        setCurrentContent('register_verifiying')
+        setregistration_validation_token(registration_validation_token[1])
+      }
+
       setLoadingProduct(true)
       Axios.get('/products/')
         .then( (response) => {
           setLoadingProduct(false)
-          console.log(response.data)
+          // console.log(response.data)
           setProducts(response.data)
         } )
         .catch( (err) => {
           setLoadingProduct(false)
         } )
 
-    }, [] )
+    }, [location] )
 
   const ModalContent = () => {
 
@@ -194,6 +220,13 @@ function App() {
       return <LoginModal
           closeModal={() => setOpenModal(false)}
       />
+    }
+
+    if ( CurrentContent === 'register_verifiying' ) {
+      return <LoginVerificationodal
+              registration_validation_token={ registration_validation_token }
+                // closeModal={ () => setOpenModal(false) }
+              />
     }
 
     else{

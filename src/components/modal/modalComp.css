@@ -18,7 +18,7 @@
 .productDetail_box{
 
     width: 60%;
-    height: 75vh;
+    /* height: 75vh; */
     border-radius: 9px;
     background-color: white;
     /* display: flex; */
@@ -42,8 +42,8 @@
 
 
 .productDetail_box-left-img{
-    width: 90%;
-    height: 90%;
+    width: 70%;
+    height: 70%;
     object-fit: contain;
 }
 
