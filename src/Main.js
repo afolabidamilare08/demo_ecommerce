@@ -6,8 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 export const MainIndex = () => {
 
-    Axios.defaults.baseURL = "http://localhost:5001/"; 
-    // Axios.defaults.baseURL = "https://ecombend-production.up.railway.app/"; 
+    // Axios.defaults.baseURL = "http://localhost:5001/"; 
+    Axios.defaults.baseURL = "https://ecombend-production.up.railway.app/"; 
 
     const [ UserDetails, setUserDetails ] = useState(null)
     const [ UserCart, setUserCart ] = useState(null)
