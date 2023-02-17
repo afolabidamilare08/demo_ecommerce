@@ -6,15 +6,15 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 export const MainIndex = () => {
 
-    // Axios.defaults.baseURL = "http://localhost:5001/"; 
-    Axios.defaults.baseURL = "https://ecombend-production.up.railway.app/"; 
+    Axios.defaults.baseURL = "http://localhost:5001/"; 
+    // Axios.defaults.baseURL = "https://ecombend-production.up.railway.app/"; 
 
     const [ UserDetails, setUserDetails ] = useState(null)
     const [ UserCart, setUserCart ] = useState(null)
 
     useState( () => {
 
-        const items = JSON.parse(localStorage.getItem('original_token'));
+        const items = JSON.parse(localStorage.getItem('original_token3'));
 
         if (items) {
             Axios.defaults.headers.common['token'] = 'Bearer ' + items
@@ -40,14 +40,14 @@ export const MainIndex = () => {
     const LoginHandler = (data) => {
         setUserDetails(data)
         setUserCart(data.cart)
-        console.log(data.accessToken)
-        localStorage.setItem('original_token',JSON.stringify(data.accessToken))
+        console.log(data)
+        localStorage.setItem('original_token3',JSON.stringify(data.accessToken))
     }
 
     const LogoutHandler = () => {
         setUserDetails(null)
         setUserCart(null)
-        localStorage.setItem('original_token',JSON.stringify(null))
+        localStorage.setItem('original_token3',JSON.stringify(null))
     }
 
     return(
@@ -65,6 +65,8 @@ export const MainIndex = () => {
                 <Routes>
                     <Route path="/" exact element={ <App/>} />
                     <Route path="/verify_register/" exact element={ <App/>} />
+                    <Route path="/verify_login/" exact element={ <App/>} />
+                    <Route path="/verify_checkout/" exact element={ <App/>} />
                 </Routes>
 
             </BrowserRouter>

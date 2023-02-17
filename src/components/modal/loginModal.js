@@ -5,6 +5,7 @@ import { Dots } from "react-activity";
 import "react-activity/dist/library.css";
 import Axios from 'axios';
 import QRCode from 'react-qr-code';
+import EmailAddress from '../../assets/images/email.png';
 import AppContext from '../../context/AppContext';
 
 
@@ -27,115 +28,86 @@ export const LoginModal = ({closeModal}) => {
     const [ Qrauth, setQrauth ] = useState(null)
 
 
-    const SignUpHandler = () => {
+    const NewSignUpHandler = () => {
 
-        if ( Username !== "" ) {
+        setisLoading(true)
 
-            if ( UserCart ) {
-                console.log(UserCart)
-                var dataTOsend = {email_address:Username,cart:UserCart}
-            }else{
-                console.log("tyy")
-                dataTOsend = {email_address:Username}
-            }
-
-            setisLoading(true)
-            Axios.post('auth/power',dataTOsend)
-                .then( (response) => {
-                    setQrauth(response.data)
-                    console.log(response.data) 
-                    setisError({
-                        error_message:"",
-                        error_status:""
-                    })
-                    setisLoading(false)
-                } )
-                .catch( (error) => {
-                    setisLoading(false)
-                    setisError({
-                        error_message:error.response.data,
-                        error_status:true
-                    })
-                } )
-
-        }
-
-    }
-
-
-    const SignInHandler = () => {
-
-        if ( Username !== "" ) {
-            setisLoading(true)
-            Axios.post('auth/signin',{username:Username})
+        Axios.post('/auth/get_token')
             .then( (response) => {
+                console.log(response.data)
 
-                if ( response.data.verification_details ) {
-                    setQrauth(response.data.verification_details)
-                }
+                Axios.post('/auth/power',{token:response.data.token,email_address:Username})
+                    .then( (response) => {
+                        console.log(response.data)
+                        setisLoading(false)
+                        setQrauth(response.data)
+                    } )
+                    .catch( (err) => {
+                        setisLoading(false)
+                        console.log(err)
 
-                if ( response.data.auth_request_id ) {
-                    setQrauth(response.data)
-                }
+                        if ( err.response ) {
+                            setisError({
+                                error_message:err.response.data.errorMessage,
+                                error_status:true
+                            })
+                        }else{
+                            setisError({
+                                error_message:"Something went wrong",
+                                error_status:true
+                            })
+                        }
 
-                console.log(response.data) 
-                setisError({
-                    error_message:"",
-                    error_status:false
-                })
-                setisLoading(false)
+                    } )
+
             } )
-            .catch( (error) => {
+            .catch( err => {
                 setisLoading(false)
-                setisError({
-                    error_message: error.response ? error.response.data : "something went wrong" ,
-                    error_status:true
-                })
+                console.log(err)
             } )
-        }
 
     }
 
+    const NewSiginHandler = () => {
 
-    const VerifiySignUp = () => {
+        setisLoading(true)
 
-        setisVerifying(true)
-
-        Axios.get(`auth/signup_verify/${Qrauth.invite_code}`)
+        Axios.post('/auth/get_token')
             .then( (response) => {
-                
-                console.log(response.data.accessToken)
-                
-                if ( response.data.accessToken ) {
-                    LoginHandler(response.data)
-                    console.log("ss")
-                }
+                console.log(response.data)
 
-                setisVerifying(false)
-                setVerifiactionError({
-                    error_message:"",
-                    error_status:false
-                })
-
-                if ( response.data.verification_details.invite_status !== "Completed" ) {
-                    setVerifiactionError({
-                        error_message:"You have not completed the authentication process",
-                        error_status:true
-                    })
-                }
+                Axios.post('/auth/login_power',{token:response.data.token,email_address:Username})
+                    .then( (response) => {
+                        console.log(response.data)
+                        setisLoading(false)
+                        setQrauth(response.data)
+                    } )
+                    .catch( (err) => {
+                        setisLoading(false)
+                        console.log(err)
+                        if ( err.response ) {
+                            setisError({
+                                error_message:err.response.data.errorMessage,
+                                error_status:true
+                            })
+                        }else{
+                            setisError({
+                                error_message:"Something went wrong",
+                                error_status:true
+                            })
+                        }
+                    } )
 
             } )
-            .catch( (err) => {
-                setisVerifying(false)
-                if (err.response) {
-                    setVerifiactionError({
-                        error_message:err.response.data,
-                        error_status:false
-                    })
-                }
+            .catch( err => {
+                setisLoading(false)
+                console.log(err)
             } )
 
     }
+
+
+
 
     const VerifiySigin = () => {
 
@@ -213,57 +185,29 @@ export const LoginModal = ({closeModal}) => {
                     setUsername(event.target.value)
                 } } />
 
-            <button className='loginModal-box-fbtn' onClick={SignInHandler} > { isLoading ? <Dots/> :  "Sign in" } </button>
-            <button className='loginModal-box-fbtn2' onClick={SignUpHandler} > { isLoading ? <Dots/> :  "Sign up" } </button>
+            <button className='loginModal-box-fbtn' onClick={NewSiginHandler} > { isLoading ? <Dots/> :  "Sign in" } </button>
+            <button className='loginModal-box-fbtn2' onClick={NewSignUpHandler} > { isLoading ? <Dots/> :  "Sign up" } </button>
 
 
             </>
         
-        :  <div style={{
-            display:"flex",
-            justifyContent:"center",
-            flexDirection:"column"
-        }} >
-        
-                {/* <QRCode
-                    size={256}
-                    style={{ height: "10em", width: "10em", margin:"2em auto"}}
-                    value={Qrauth.qr_code_data}
-                    viewBox={`0 0 256 256`} 
-                />
+        : <>  
 
-                <div style={{
-                    color:"tomato",
-                    textAlign:"center",
-                    marginTop:"1rem",
-                    fontSize:".9rem"
-                }} >
-                    { VerifiactionError.error_message }
-                </div>
+            <img alt="succes" src={EmailAddress} style={{
+                width:"100px",
+                height:"100px",
+                display:"block",
+                margin:"30px auto"
+            }} />
 
-                <div style={{
-                    fontSize:"0.9rem",
-                    textAlign:"center"
-                }} >
-                    Scan the Qr code with your auth amour app to complete your authentication
-                </div>
+            <div style={{
+                textAlign:"center",
+                margin:"1rem auto"
+            }} >
 
-                <button className='loginModal-box-fbtn' onClick={ () => {
-
-                    if (Qrauth.invite_status) {
-                        VerifiySignUp()
-                    }
-
-                    if ( Qrauth.auth_request_id ) {
-                        VerifiySigin()
-                    }
-
-                } } >
-                    { isVerifying ? <Dots/> : "Done With Authentication" }    
-                </button> */}
-
-                Check your email address to complete the register process
-        </div> }
+                    Check your email address to complete the register process
+            </div> 
+        </> }
 
       </div>
 

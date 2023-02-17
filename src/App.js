@@ -21,6 +21,9 @@ import { MyOrdersModal } from './components/modal/MyOrders';
 import { useParams, useSearchParams, useLocation } from 'react-router-dom';
 import ImageCart from './assets/images/carts.png'
 import { LoginVerificationodal } from './components/modal/loginVerificationModal';
+import { SecondloginVerificationodal } from './components/modal/SecondloginVerificationModal2';
+import { CheckuoutVerificationodal } from './components/modal/CheckoutVerificationModal';
+import EmailAddress from './assets/images/email.png';
 
 
 
@@ -33,11 +36,14 @@ function App() {
   const [ CurrentContent, setCurrentContent ] = useState('product_Detail')
   const [ CurrentProductToShow, setCurrentProductToShow ] = useState(null)
   const [ CheckingOut, setCheckingOut ] = useState(false)
+  const [ ProcessingCheckout, setProcessingCheckout ] = useState(false)
 
   const { UserBasicDetails, UserCart, UpdateUserCart } = useContext(AppContext)
 
   const [ OpenModal, setOpenModal ] = useState(false)
   const [ registration_validation_token, setregistration_validation_token ] = useState()
+  const [ auth_validation_token, setauth_validation_token ] = useState()
+  const [ auth_request_id, setauth_request_id ] = useState()
 
   const location = useLocation()
 
@@ -84,6 +90,36 @@ function App() {
   }
 
 
+  const BeginCheckoutVerification = () => {
+
+    setProcessingCheckout(true)
+    Axios.post('/auth/get_token')
+    .then( (response) => {
+        console.log(response.data)
+
+        Axios.post('/auth/checkout_power',{
+          token:response.data.token,
+          email_address:UserBasicDetails.username
+        })
+          .then( (response) => {
+            console.log(response.data)
+            setProcessingCheckout(false)
+            setCheckingOut(true)
+          } )
+          .catch( (err) => {
+            console.log(err)
+            setProcessingCheckout(false)
+          } )
+
+    } )
+    .catch( err => {
+      
+        console.log(err)
+    } )
+
+  }
+
+
   const CartModal = () => {
 
     return (
@@ -95,7 +131,7 @@ function App() {
               </div>
               { UserCart ?
               
-                  <>
+                 !CheckingOut ? <>
 
                     <div className='cartmodal-box-mid' >
 
@@ -138,20 +174,41 @@ function App() {
                     </div>
 
                     <div className='cartmodal-box-btm' > 
-                      <button className='cartmodal-box-btm-btn' onClick={ UserBasicDetails ? () => setCheckingOut(true) : () => {
-                        setCheckingOut(true)
-                        setCurrentContent('login_reg')
+                      <button className='cartmodal-box-btm-btn' onClick={ 
+                        UserBasicDetails ? () => BeginCheckoutVerification() : () => {
+                          // setCheckingOut(true)
+                          setCurrentContent('login_reg')
                         } } >
-                        Checkout Cart Total: ${UserCart.cart_total}
+                        { ProcessingCheckout ? <Dots/> : `Checkout Cart Total: $${UserCart.cart_total}` } 
                       </button>
                     </div>
-                  </>
+                  </> 
+                  
+                  :
+
+                    <>  
+                        <img alt="succes" src={EmailAddress} style={{
+                            width:"100px",
+                            height:"100px",
+                            display:"block",
+                            margin:"30px auto"
+                        }} />
+
+                        <div style={{
+                            textAlign:"center",
+                            margin:"1rem auto"
+                        }} >
+
+                                Check your email address to complete the your checkout process
+                        </div> 
+                    </>
               
               : 
-              <div>
-              <img src={ImageCart} className="nocart_img" alt="well" />
-              <div className='nocart_img_txt' > Your Cart is Empty </div>
-            </div>
+              
+                <div>
+                  <img src={ImageCart} className="nocart_img" alt="well" />
+                  <div className='nocart_img_txt' > Your Cart is Empty </div>
+                </div>
               
               }
 
@@ -167,16 +224,46 @@ function App() {
 
       if ( location.pathname === '/verify_register/' ) {
         const registration_validation_token = location.search.split("=");
-        console.log(registration_validation_token[1])
         setCurrentContent('register_verifiying')
+        setOpenModal(true)
         setregistration_validation_token(registration_validation_token[1])
+      }
+
+
+
+      if ( location.pathname === '/verify_checkout/' ) {
+        const auth_validation_token = location.search.split("&");
+        const auth_proper = auth_validation_token[0].split("=")
+        const auth_request_id = auth_validation_token[1].split("=")
+        console.log({
+          auth_validation_token:auth_proper[1],
+          auth_request_id:auth_request_id[1]
+        })
+        setCurrentContent('checkout_verifiying')
+        setOpenModal(true)
+        setauth_validation_token(auth_proper[1])
+        setauth_request_id(auth_request_id[1])
+      }
+
+
+      if ( location.pathname === '/verify_login/' ) {
+        const auth_validation_token = location.search.split("&");
+        const auth_proper = auth_validation_token[0].split("=")
+        const auth_request_id = auth_validation_token[1].split("=")
+        console.log({
+          auth_validation_token:auth_proper[1],
+          auth_request_id:auth_request_id[1]
+        })
+        setCurrentContent('login_verifiying')
+        setOpenModal(true)
+        setauth_validation_token(auth_proper[1])
+        setauth_request_id(auth_request_id[1])
       }
 
       setLoadingProduct(true)
       Axios.get('/products/')
         .then( (response) => {
           setLoadingProduct(false)
-          // console.log(response.data)
           setProducts(response.data)
         } )
         .catch( (err) => {
@@ -201,18 +288,7 @@ function App() {
     }
 
     if( CurrentContent === 'my_cart' ){
-
-      if ( CheckingOut ) {
-        return <CHeckouthAuthModal
-        closeModal={() => {
-          setOpenModal(false)
-          setCheckingOut(false)
-        }}
-        />
-      }else{
         return <CartModal/>
-
-      }
 
     }
 
@@ -225,7 +301,23 @@ function App() {
     if ( CurrentContent === 'register_verifiying' ) {
       return <LoginVerificationodal
               registration_validation_token={ registration_validation_token }
-                // closeModal={ () => setOpenModal(false) }
+                closeModal={ () => setOpenModal(false) }
+              />
+    }
+
+    if ( CurrentContent === 'checkout_verifiying' ) {
+      return <CheckuoutVerificationodal
+                auth_validation_token={ auth_validation_token }
+                closeModal={ () => setOpenModal(false) }
+                auth_request_id={ auth_request_id }
+              />
+    }
+
+    if ( CurrentContent === 'login_verifiying' ) {
+      return <SecondloginVerificationodal
+                auth_validation_token={ auth_validation_token }
+                closeModal={ () => setOpenModal(false) }
+                auth_request_id={ auth_request_id }
               />
     }
 
@@ -301,13 +393,6 @@ function App() {
           openModal={OpenModal}
           content={ <ModalContent/> }
         />
-
-      {/* <QRCode
-        size={256}
-        style={{ height: "10em", width: "10em", margin:"5em" }}
-        value={value}
-        viewBox={`0 0 256 256`} 
-      /> */}
 
       <FooterComp/>
 

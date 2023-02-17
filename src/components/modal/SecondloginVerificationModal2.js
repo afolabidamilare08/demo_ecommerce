@@ -10,7 +10,7 @@ import AppContext from '../../context/AppContext';
 
 
 
-export const LoginVerificationodal = ({closeModal,registration_validation_token}) => {
+export const SecondloginVerificationodal = ({closeModal,auth_validation_token,auth_request_id}) => {
 
     const { LoginHandler, UserCart } = useContext(AppContext)
 
@@ -26,7 +26,10 @@ export const LoginVerificationodal = ({closeModal,registration_validation_token}
         .then( (response) => {
             console.log(response.data)
 
-            Axios.post('/auth/verify_power',{token:response.data.token,auth_validation_token:registration_validation_token})
+            Axios.post('/auth/verify_login_power',{token:response.data.token,
+                auth_validation_token:auth_validation_token,
+                auth_request_id:auth_request_id
+            })
                 .then( (response) => {
                     console.log(response.data)
                     setisSuccessfull(true)
@@ -96,7 +99,7 @@ export const LoginVerificationodal = ({closeModal,registration_validation_token}
                         textAlign:"center",
                         marginTop:"1rem",
                         color:isError ? "tomato" : "black"
-                    }} > { isError ? "Something went wrong" : "Click on the button below to complete your registration" } </div>
+                    }} > { isError ? "Something went wrong" : "Click on the button below to complete your login verification" } </div>
 
                     }
 
@@ -104,7 +107,7 @@ export const LoginVerificationodal = ({closeModal,registration_validation_token}
                         textAlign:"center",
                         color:"green",
                         fontWeight:"600"
-                        }} > Your Account was successfully created </div> : <button className='complete_btn' onClick={ VerifiyRegisterHandler } > 
+                        }} > Login Successful </div> : <button className='complete_btn' onClick={ VerifiyRegisterHandler } > 
                         Complete Verification
                     </button>}
                 </>

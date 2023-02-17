@@ -8,12 +8,12 @@ import './footer.css'
 export const FooterComp = () => {
 
     return(
-        <footer class="site-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12 col-md-6">
+        <footer className="site-footer">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12 col-md-6">
                 <h6>About</h6>
-                <p class="text-justify">
+                <p className="text-justify">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                     sed do eiusmod tempor incididunt ut labore et dolore magna 
                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
@@ -22,9 +22,9 @@ export const FooterComp = () => {
                 </p>
               </div>
     
-              <div class="col-xs-6 col-md-3">
+              <div className="col-xs-6 col-md-3">
                 <h6>Categories</h6>
-                <ul class="footer-links">
+                <ul className="footer-links">
                   <li>Shoes</li>
                   <li>Bags</li>
                   <li>Trousers</li>
@@ -34,9 +34,9 @@ export const FooterComp = () => {
                 </ul>
               </div>
     
-              <div class="col-xs-6 col-md-3">
+              <div className="col-xs-6 col-md-3">
                 <h6>Quick Links</h6>
-                <ul class="footer-links">
+                <ul className="footer-links">
                   <li>About Us</li>
                   <li>Contact Us</li>
                   <li>Privacy Policy</li>

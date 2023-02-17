@@ -26,39 +26,6 @@ export const CHeckouthAuthModal = ({closeModal}) => {
     
     const [ Qrauth, setQrauth ] = useState(null)
 
-    const SignInHandler = () => {
-
-        if ( UserBasicDetails.username ) {
-            setisLoading(true)
-            Axios.post('auth/authenticate/checkout',{username:UserBasicDetails.username})
-            .then( (response) => {
-
-                if ( response.data.verification_details ) {
-                    setQrauth(response.data.verification_details)
-                }
-
-                if ( response.data.auth_request_id ) {
-                    setQrauth(response.data)
-                }
-
-                console.log(response.data) 
-                setisError({
-                    error_message:"",
-                    error_status:false
-                })
-                setisLoading(false)
-            } )
-            .catch( (error) => {
-                setisLoading(false)
-                setisError({
-                    error_message:error.response.data,
-                    error_status:true
-                })
-            } )
-        }
-
-    }
-
     useEffect( () => {
 
         if ( UserBasicDetails.username ) {

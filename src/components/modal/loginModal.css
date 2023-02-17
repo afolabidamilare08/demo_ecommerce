@@ -223,6 +223,24 @@
     cursor: pointer;
 }
 
+.complete_btn{
+    padding:.8rem;
+    display: block;
+    margin: 2rem auto;
+    background-color: rgb(64, 137, 240);
+    border: none;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all .5s;
+}
+
+.complete_btn:hover,
+.complete_btn:focus{
+    background-color: rgba(64, 137, 240, 0.51);
+}
+
 
 @media screen and (max-width: 1000px) {
 
