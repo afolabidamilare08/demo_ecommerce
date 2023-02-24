@@ -36,7 +36,11 @@ export const LoginModal = ({closeModal}) => {
             .then( (response) => {
                 console.log(response.data)
 
-                Axios.post('/auth/power',{token:response.data.token,email_address:Username})
+                Axios.post('/auth/power',{
+                    token:response.data.token,
+                    email_address:Username,
+                    User_cart:UserCart ? UserCart.cart_products.length > 0 ? {...UserCart} : null : null
+                })
                     .then( (response) => {
                         console.log(response.data)
                         setisLoading(false)
@@ -76,7 +80,11 @@ export const LoginModal = ({closeModal}) => {
             .then( (response) => {
                 console.log(response.data)
 
-                Axios.post('/auth/login_power',{token:response.data.token,email_address:Username})
+                Axios.post('/auth/login_power',{
+                    token:response.data.token,
+                    email_address:Username,
+                    User_cart:UserCart ? UserCart.cart_products.length > 0 ? {...UserCart} : null : null }
+                    )
                     .then( (response) => {
                         console.log(response.data)
                         setisLoading(false)
