@@ -282,7 +282,11 @@ function App() {
           setCurrentContent('my_cart')
           setOpenModal(true)
         } }
-        OpenCheckout={ () => BeginCheckoutVerification()}
+        OpenCheckout={ () => {
+          BeginCheckoutVerification()
+          setCurrentContent('my_cart')
+          setOpenModal(true)
+        }}
         loginProcc={ () => {
           setCurrentContent('login_reg')
           setOpenModal(true)
