@@ -24,6 +24,7 @@ import { LoginVerificationodal } from './components/modal/loginVerificationModal
 import { SecondloginVerificationodal } from './components/modal/SecondloginVerificationModal2';
 import { CheckuoutVerificationodal } from './components/modal/CheckoutVerificationModal';
 import EmailAddress from './assets/images/email.png';
+import { RegisterModal } from './components/modal/RegisterModal';
 
 
 
@@ -308,6 +309,14 @@ function App() {
     if( CurrentContent === 'login_reg' ){
       return <LoginModal
           closeModal={() => setOpenModal(false)}
+          movetoreg={ () => setCurrentContent('reg_it') }
+      />
+    }
+
+    if( CurrentContent === 'reg_it' ){
+      return <RegisterModal
+          closeModal={() => setOpenModal(false)}
+          movetologin={ () => setCurrentContent('login_reg') }
       />
     }
 
@@ -351,6 +360,10 @@ function App() {
           } }
           openLogin={ () => {
             setCurrentContent('login_reg')
+            setOpenModal(true)
+          } }
+          openRegister={ () => {
+            setCurrentContent('reg_it')
             setOpenModal(true)
           } }
           openOrders={ () => {

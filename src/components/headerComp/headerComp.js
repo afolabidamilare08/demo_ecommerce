@@ -6,7 +6,7 @@ import {CgShoppingCart} from 'react-icons/cg';
 import { useContext, useEffect, useState } from 'react';
 import AppContext from '../../context/AppContext';
 
-export const HeaderComp = ({openMycart,openLogin,openOrders}) => {
+export const HeaderComp = ({openMycart,openLogin,openOrders,openRegister}) => {
 
     const [ AccountOpen, setAccountOpen ] = useState(false)
     const { UserBasicDetails, LogoutHandler } = useContext(AppContext)
@@ -68,7 +68,7 @@ export const HeaderComp = ({openMycart,openLogin,openOrders}) => {
                             : <>
                             
                                 <div className='accountDiv-hov-link' onClick={ openLogin } >Login</div>
-                            <div className='accountDiv-hov-link' onClick={ openLogin } >Register</div>
+                            <div className='accountDiv-hov-link' onClick={ openRegister } >Register</div>
                             </> }
 
                         </div>: ""}

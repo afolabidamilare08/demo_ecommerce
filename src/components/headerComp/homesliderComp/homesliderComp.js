@@ -5,7 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 export const HomesliderComp = () => {
 
     const Slides = [
-        1,2,3
+        1
     ]
 
     return (
@@ -14,27 +14,27 @@ export const HomesliderComp = () => {
 
             { Slides.map( (slide,index) => {
 
-                if ( slide === 2 ) {
-                    return ( 
-                        <div className='homeSliderimg2' key={index} >
+                // if ( slide === 2 ) {
+                //     return ( 
+                //         <div className='homeSliderimg2' key={index} >
     
-                        </div>  
-                    ); 
-                }
-                if ( slide === 3 ) {
-                    return ( 
-                        <div className='homeSliderimg3' key={index} >
+                //         </div>  
+                //     ); 
+                // }
+                // if ( slide === 3 ) {
+                //     return ( 
+                //         <div className='homeSliderimg3' key={index} >
     
-                        </div>  
-                    ); 
-                }
-                else{
+                //         </div>  
+                //     ); 
+                // }
+                // else{
                     return ( 
                         <div className='homeSliderimg' key={index} >
     
                         </div>  
                     );
-                }
+                // }
 
             } ) }
 

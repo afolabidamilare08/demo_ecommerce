@@ -111,8 +111,28 @@
 
 
 
+.dontHve{
+    text-align:center;
+    margin-top:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+}
+
+.dontHve button{
+    background-color: transparent;
+    border: none;
+    color: rgb(38, 120, 234);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .5s;
+}
 
 
+.dontHve button:hover{
+    color: rgba(38, 120, 234, 0.628);
+}
 
 
 

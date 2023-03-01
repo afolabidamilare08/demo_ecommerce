@@ -10,7 +10,7 @@ import AppContext from '../../context/AppContext';
 
 
 
-export const LoginModal = ({closeModal,movetoreg}) => {
+export const RegisterModal = ({closeModal,movetologin}) => {
 
     const { LoginHandler, UserCart } = useContext(AppContext)
     const [ Username, setUsername ] = useState('')
@@ -174,7 +174,7 @@ export const LoginModal = ({closeModal,movetoreg}) => {
             <>
             
             <div className='loginModal-box-msg' >
-                Sign in with your email address
+                Sign up with your email address
             </div>
 
             <div style={{
@@ -193,11 +193,11 @@ export const LoginModal = ({closeModal,movetoreg}) => {
                     setUsername(event.target.value)
                 } } />
 
-            <button className='loginModal-box-fbtn' onClick={NewSiginHandler} > { isLoading ? <Dots/> :  "Sign in" } </button>
-            {/* <button className='loginModal-box-fbtn2' onClick={NewSignUpHandler} > { isLoading ? <Dots/> :  "Sign up" } </button> */}
-            
-            <div className='dontHve' > Don't have an account yet..? 
-                <button onClick={movetoreg} >Register</button>  
+            {/* <button className='loginModal-box-fbtn' onClick={NewSiginHandler} > { isLoading ? <Dots/> :  "Sign in" } </button> */}
+            <button className='loginModal-box-fbtn2' onClick={NewSignUpHandler} > { isLoading ? <Dots/> :  "Sign up" } </button>
+
+            <div className='dontHve' >Already have an account yet..? 
+                <button onClick={movetologin} >Login</button>  
             </div>
 
             </>
