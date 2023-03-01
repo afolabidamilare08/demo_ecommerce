@@ -8,7 +8,7 @@ import "react-activity/dist/library.css";
 
 
 
-export const ProductDetailModal = ({CurrentProductToShow,setOpenModal}) => {
+export const ProductDetailModal = ({CurrentProductToShow,setOpenModal,openCartModal,OpenCheckout,loginProcc}) => {
 
     const [ isError, setisError ] = useState(null)
     const [ Removing, setRemoving ] = useState(false)
@@ -189,11 +189,22 @@ export const ProductDetailModal = ({CurrentProductToShow,setOpenModal}) => {
 
             { Existing ? 
             
-              <button className='productDetail_box-right-btn' style={{
-                backgroundColor:"tomato"
-              }} onClick={ () => RemoveFromCart(CurrentProductToShow) } >
-                { Removing ? <Dots/> : "Remove product from cart" }
+              <div>
+
+              <button className='nbhbyyy2' style={{
+                color:"white"
+              }} onClick={ () => openCartModal() } >
+                { Removing ? <Dots/> : "View Cart" }
               </button>
+
+              <button className='nbhbyyy' style={{
+                marginLeft:20,
+                color:"white"
+              }} onClick={ UserBasicDetails ? () => OpenCheckout() : () => loginProcc() } >
+                { Removing ? <Dots/> : "Checkout" }
+              </button>
+
+              </div>
 
             :
             

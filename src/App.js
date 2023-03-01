@@ -278,6 +278,15 @@ function App() {
       return <ProductDetailModal
         CurrentProductToShow={CurrentProductToShow}
         setOpenModal={ () => setOpenModal(false) }
+        openCartModal={ () => {
+          setCurrentContent('my_cart')
+          setOpenModal(true)
+        } }
+        OpenCheckout={ () => BeginCheckoutVerification()}
+        loginProcc={ () => {
+          setCurrentContent('login_reg')
+          setOpenModal(true)
+        } }
       />
     }
 

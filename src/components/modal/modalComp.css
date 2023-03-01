@@ -78,7 +78,7 @@
 
 .productDetail_box-right-btn{
     margin-top: 1em;
-    width: 50%;
+    min-width: 35%;
     padding: .4rem;
     border-radius: 5px;
     border: none;
@@ -96,6 +96,45 @@
     border: 2px solid crimson;
 }
 
+
+.nbhbyyy{
+    margin-top: 1em;
+    min-width: 35%;
+    padding: .4rem;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(62, 94, 223);
+    color: white;
+    font-weight: 700;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.nbhbyyy:hover{
+    border: 2px solid transparent;
+    background-color: rgba(62, 94, 223, 0.495);
+}
+
+
+.nbhbyyy2{
+    margin-top: 1em;
+    min-width: 35%;
+    padding: .4rem;
+    border-radius: 5px;
+    border: none;
+    background-color: tomato;
+    color: white;
+    font-weight: 700;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.nbhbyyy2:hover{
+    border: 2px solid transparent;
+    background-color: rgba(255, 99, 71, 0.8);
+}
 
 .closeModal{
     color: gray;
