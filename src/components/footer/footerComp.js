@@ -28,9 +28,9 @@ export const FooterComp = () => {
                   <li>Shoes</li>
                   <li>Bags</li>
                   <li>Trousers</li>
-                  <li>Shirts</li>
+                  {/* <li>Shirts</li>
                   <li>Hats</li>
-                  <li>Track Pants</li>
+                  <li>Track Pants</li> */}
                 </ul>
               </div>
     
@@ -44,7 +44,11 @@ export const FooterComp = () => {
               </div>
               
             </div>
-            {/* <hr/> */}
+            <p className="text-justify" style={{
+              textAlign:"center"
+            }} >
+                    This is only a sample site to demonstrate the Authentication capabilities of <a href='https://autharmor.com/' >Auth Armor</a> - This is not a real eCommerce site
+                </p>
           </div>
     </footer>
 
