@@ -15,7 +15,7 @@ export const ProductDetailModal = ({CurrentProductToShow,setOpenModal,openCartMo
     const [ isLoading, setisLoading ] = useState(false)
     const [ Existing, setisExisting ] = useState(false)
 
-    const { UserBasicDetails, UpdateUserCart, UserCart } = useContext(AppContext);
+    const { UserBasicDetails, UpdateUserCart, UserCart, BackendUrl } = useContext(AppContext);
 
 
     useEffect( () => {
@@ -151,7 +151,7 @@ export const ProductDetailModal = ({CurrentProductToShow,setOpenModal,openCartMo
             <div className='splitIdd' >
 
             <div className='productDetail_box-left' >
-            <img alt='wel' src={CurrentProductToShow.product_images[0].url ? CurrentProductToShow.product_images[0].url : `https://ecombend-production.up.railway.app/${CurrentProductToShow.product_images[0].path}` } className="productDetail_box-left-img" />
+            <img alt='wel' src={CurrentProductToShow.product_images[0].url ? CurrentProductToShow.product_images[0].url : `${BackendUrl}${CurrentProductToShow.product_images[0].path}` } className="productDetail_box-left-img" />
           </div>
   
           <div className='productDetail_box-right' >

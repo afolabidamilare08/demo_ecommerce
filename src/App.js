@@ -39,7 +39,7 @@ function App() {
   const [ CheckingOut, setCheckingOut ] = useState(false)
   const [ ProcessingCheckout, setProcessingCheckout ] = useState(false)
 
-  const { UserBasicDetails, UserCart, UpdateUserCart } = useContext(AppContext)
+  const { UserBasicDetails, UserCart, UpdateUserCart, BackendUrl } = useContext(AppContext)
 
   const [ OpenModal, setOpenModal ] = useState(false)
   const [ registration_validation_token, setregistration_validation_token ] = useState()
@@ -143,7 +143,7 @@ function App() {
 
                           <div className='cartItem' key={index} >
 
-                            <img src={item.product.product_images[0].url ? item.product.product_images[0].url : `https://ecombend-production.up.railway.app/${item.product.product_images[0].path}` } alt="wisdome" className='cartItem-img' />
+                            <img src={item.product.product_images[0].url ? item.product.product_images[0].url : `${BackendUrl}${item.product.product_images[0].path}` } alt="wisdome" className='cartItem-img' />
 
                             <div className='cartItem-left' >
                               <div className='cartItem-left-name' >
@@ -397,7 +397,7 @@ function App() {
 
                     return(
                       <ProductList key={index}
-                          product_image={ product.product_images[0].url ? product.product_images[0].url : `https://ecombend-production.up.railway.app/${product.product_images[0].path}` }
+                          product_image={ product.product_images[0].url ? product.product_images[0].url : `${BackendUrl}${product.product_images[0].path}` }
                           product_name={product.product_name}
                           product_price={product.product_price}
                       openMOdal={ () => {

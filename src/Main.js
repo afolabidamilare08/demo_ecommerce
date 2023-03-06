@@ -12,6 +12,8 @@ export const MainIndex = () => {
     const [ UserDetails, setUserDetails ] = useState(null)
     const [ UserCart, setUserCart ] = useState(null)
 
+    const BackendUrl = "https://ecombend-production.up.railway.app/"
+
     useState( () => {
 
         const items = JSON.parse(localStorage.getItem('original_token3'));
@@ -57,7 +59,8 @@ export const MainIndex = () => {
             UserBasicDetails:UserDetails,
             UpdateUserCart: (data) => setUserCart(data),
             UserCart:UserCart,
-            LogoutHandler:LogoutHandler
+            LogoutHandler:LogoutHandler,
+            BackendUrl:BackendUrl
         }} >
 
             <BrowserRouter>
