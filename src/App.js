@@ -143,7 +143,7 @@ function App() {
 
                           <div className='cartItem' key={index} >
 
-                            <img src={item.product.product_images[0].url} alt="wisdome" className='cartItem-img' />
+                            <img src={item.product.product_images[0].url ? item.product.product_images[0].url : `https://ecombend-production.up.railway.app/${item.product.product_images[0].path}` } alt="wisdome" className='cartItem-img' />
 
                             <div className='cartItem-left' >
                               <div className='cartItem-left-name' >
