@@ -397,7 +397,7 @@ function App() {
 
                     return(
                       <ProductList key={index}
-                          product_image={ product.product_images[0].url }
+                          product_image={ product.product_images[0].url ? product.product_images[0].url : `https://ecombend-production.up.railway.app/${product.product_images[0].path}` }
                           product_name={product.product_name}
                           product_price={product.product_price}
                       openMOdal={ () => {
