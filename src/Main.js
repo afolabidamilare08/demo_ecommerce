@@ -3,6 +3,7 @@ import { useState } from "react"
 import App from "./App"
 import AppContext from "./context/AppContext"
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Brog1 from './assets/images/products/brog1.jpg';
 
 export const MainIndex = () => {
 
@@ -52,7 +53,18 @@ export const MainIndex = () => {
         product_images: [
         { url:"http://res.cloudinary.com/drcn2xv3q/image/upload/v1675464196/e2eca7d6cad3ab469c9d22d04.jpg"},
         { url:"http://res.cloudinary.com/drcn2xv3q/image/upload/v1675464197/e2eca7d6cad3ab469c9d22d05.jpg"},
-    ] },
+        ] },
+        {   _id:"63dd8e06dc5413abb0635702",
+        product_owner:"63dd3ebd343bb8f5167bb2fe",
+        product_name:"Big Broggs", 
+        product_description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu ", 
+        product_price:"600",
+        available:true,
+        product_category:"New Arrivals",
+        product_images: [
+        { url:Brog1},
+        { url:Brog1},
+        ] },
     ])
 
 
