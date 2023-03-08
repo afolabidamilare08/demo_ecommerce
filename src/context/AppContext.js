@@ -4,6 +4,7 @@ const AppContext = React.createContext({
     UserBasicDetails:false,
     UserCart:false,
     BackendUrl:false,
+    Products:false,
     UpdateUserCart: () => {},
     UpdateUserBasicDetails: () => {},
     RemoveUserBasicDetails: () => {},

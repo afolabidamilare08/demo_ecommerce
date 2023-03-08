@@ -117,6 +117,7 @@ export const ProductDetailModal = ({CurrentProductToShow,setOpenModal,openCartMo
         Axios.post('/carts/cart/mycart/add_to_cart',{
             product_id:CurrentProductToShow._id,
             product_quantity:1,
+            product:CurrentProductToShow
         }).then( (response) => {
             setisLoading(false)
             console.log(response.data)

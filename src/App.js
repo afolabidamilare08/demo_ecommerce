@@ -32,14 +32,14 @@ import { RegisterModal } from './components/modal/RegisterModal';
 
 function App() {
 
-  const [ Products, setProducts ] = useState(null)
+  // const [ Products, setProducts ] = useState(null)
   const [ LoadingProduct, setLoadingProduct ] = useState(false)
   const [ CurrentContent, setCurrentContent ] = useState('product_Detail')
   const [ CurrentProductToShow, setCurrentProductToShow ] = useState(null)
   const [ CheckingOut, setCheckingOut ] = useState(false)
   const [ ProcessingCheckout, setProcessingCheckout ] = useState(false)
 
-  const { UserBasicDetails, UserCart, UpdateUserCart, BackendUrl } = useContext(AppContext)
+  const { UserBasicDetails, UserCart, UpdateUserCart, BackendUrl, Products } = useContext(AppContext)
 
   const [ OpenModal, setOpenModal ] = useState(false)
   const [ registration_validation_token, setregistration_validation_token ] = useState()
@@ -261,15 +261,15 @@ function App() {
         setauth_request_id(auth_request_id[1])
       }
 
-      setLoadingProduct(true)
-      Axios.get('/products/')
-        .then( (response) => {
-          setLoadingProduct(false)
-          setProducts(response.data)
-        } )
-        .catch( (err) => {
-          setLoadingProduct(false)
-        } )
+      // setLoadingProduct(true)
+      // Axios.get('/products/')
+      //   .then( (response) => {
+      //     setLoadingProduct(false)
+      //     setProducts(response.data)
+      //   } )
+      //   .catch( (err) => {
+      //     setLoadingProduct(false)
+      //   } )
 
     }, [location] )
 
