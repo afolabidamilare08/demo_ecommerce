@@ -76,7 +76,7 @@ export const MainIndex = () => {
 
 
 
-    useState( () => {
+    useEffect( () => {
 
         const items = JSON.parse(localStorage.getItem('original_token3'));
 
