@@ -8,12 +8,12 @@ import Brog1 from './assets/images/products/brog1.jpg';
 export const MainIndex = () => {
 
     // Axios.defaults.baseURL = "http://localhost:5001/"; 
-    Axios.defaults.baseURL = "https://ecombend-production.up.railway.app/"; 
+    Axios.defaults.baseURL = "https://long-gold-caiman-cuff.cyclic.app/"; 
 
     const [ UserDetails, setUserDetails ] = useState(null)
     const [ UserCart, setUserCart ] = useState(null)
 
-    const BackendUrl = "https://ecombend-production.up.railway.app/"
+    const BackendUrl = "https://long-gold-caiman-cuff.cyclic.app/"
 
 
 
